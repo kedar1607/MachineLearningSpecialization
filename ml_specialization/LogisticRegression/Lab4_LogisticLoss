@@ -1,0 +1,60 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from plt_logistic_loss import  plt_logistic_cost, plt_two_logistic_loss_curves, plt_simple_example
+from plt_logistic_loss import soup_bowl, plt_logistic_squared_error
+plt.style.use('./deeplearning.mplstyle')
+
+# This is what mean squared error looks like for LINEAR regression
+# soup_bowl()
+
+x_train = np.array([0., 1, 2, 3, 4, 5],dtype=np.longdouble)
+y_train = np.array([0,  0, 0, 1, 1, 1],dtype=np.longdouble)
+plt_simple_example(x_train, y_train)
+
+plt.close('all')
+# Now, let's get a surface plot of the cost using a squared error cost:
+# 𝐽(𝑤,𝑏)=12𝑚∑𝑖=0𝑚−1(𝑓𝑤,𝑏(𝑥(𝑖))−𝑦(𝑖))2
+# where
+# 𝑓𝑤,𝑏(𝑥(𝑖))=𝑠𝑖𝑔𝑚𝑜𝑖𝑑(𝑤𝑥(𝑖)+𝑏)
+# You should see that the resulting plot is not convex anymore and has several local minima.
+# Hence the same cost function of 𝐽(𝑤,𝑏)=12𝑚∑𝑖=0𝑚−1(𝑓𝑤,𝑏(𝑥(𝑖))−𝑦(𝑖))2 cannot be used for logistic regression.
+plt_logistic_squared_error(x_train,y_train)
+# plt.show()
+
+# Now, let's get a surface plot of the cost using a logistic loss cost:
+# This is defined:
+
+# 𝑙𝑜𝑠𝑠(𝑓𝐰,𝑏(𝐱(𝑖)),𝑦(𝑖))
+#   is the cost for a single data point, which is:
+# 𝑙𝑜𝑠𝑠(𝑓𝐰,𝑏(𝐱(𝑖)),𝑦(𝑖))= −log(𝑓𝐰,𝑏(𝐱(𝑖)))   if 𝑦(𝑖)=1
+# 𝑙𝑜𝑠𝑠(𝑓𝐰,𝑏(𝐱(𝑖)),𝑦(𝑖))= −log(1−𝑓𝐰,𝑏(𝐱(𝑖))) if 𝑦(𝑖)=0
+ 
+# 𝑓𝐰,𝑏(𝐱(𝑖))
+#   is the model's prediction, while  𝑦(𝑖)
+#   is the target value.
+
+# 𝑓𝐰,𝑏(𝐱(𝑖))=𝑔(𝐰⋅𝐱(𝑖)+𝑏)
+#   where function  𝑔
+#   is the sigmoid function.
+# Here you can see that the cost is convex and has only one global minimum.
+# Uncomment to test below
+# plt_two_logistic_loss_curves()
+
+
+# The loss function above can be rewritten to be easier to implement.
+# 𝑙𝑜𝑠𝑠(𝑓𝐰,𝑏(𝐱(𝑖)),𝑦(𝑖))=(−𝑦(𝑖)log(𝑓𝐰,𝑏(𝐱(𝑖)))−(1−𝑦(𝑖))log(1−𝑓𝐰,𝑏(𝐱(𝑖)))
+ 
+# This is a rather formidable-looking equation. It is less daunting when you consider  𝑦(𝑖)
+#   can have only two values, 0 and 1. One can then consider the equation in two pieces:
+# when  𝑦(𝑖)=0
+#  , the left-hand term is eliminated:
+# 𝑙𝑜𝑠𝑠(𝑓𝐰,𝑏(𝐱(𝑖)),0)=(−(0)log(𝑓𝐰,𝑏(𝐱(𝑖)))−(1−0)log(1−𝑓𝐰,𝑏(𝐱(𝑖)))=−log(1−𝑓𝐰,𝑏(𝐱(𝑖)))
+ 
+# and when  𝑦(𝑖)=1
+#  , the right-hand term is eliminated:
+# 𝑙𝑜𝑠𝑠(𝑓𝐰,𝑏(𝐱(𝑖)),1)=(−(1)log(𝑓𝐰,𝑏(𝐱(𝑖)))−(1−1)log(1−𝑓𝐰,𝑏(𝐱(𝑖)))=−log(𝑓𝐰,𝑏(𝐱(𝑖)))
+
+plt.close('all')
+cst = plt_logistic_cost(x_train,y_train)
+print("Cost is: ", cst)
+
