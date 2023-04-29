@@ -1,0 +1,23 @@
+
+# Create a virtual environment for your TensorFlow project:
+python -m venv tf_env
+source tf_env/bin/activate
+
+# Install TensorFlow in your virtual environment:
+pip install tensorflow
+
+
+# To make sure you have the latest versions of pip and setuptools. You can update them in your virtual environment using:
+pip install --upgrade pip setuptools
+
+
+# Install the required dependencies:
+pip install --upgrade numpy six wheel typing_extensions ipywidgets matplotlib
+
+
+# Install the TensorFlow Mac-optimized binary:
+
+
+
+# Install the TensorFlow Metal plugin:
+pip install --upgrade tensorflow-metal

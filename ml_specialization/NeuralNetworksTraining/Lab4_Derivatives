@@ -1,0 +1,112 @@
+from sympy import symbols, diff
+
+J = (3)**2
+J_epsilon = (3 + 0.001)**2
+k = (J_epsilon - J)/0.001    # difference divided by epsilon
+print(f"J = {J}, J_epsilon = {J_epsilon}, dJ_dw ~= k = {k:0.6f} ")
+
+J = (3)**2
+J_epsilon = (3 + 0.000000001)**2
+k = (J_epsilon - J)/0.000000001
+print(f"J = {J}, J_epsilon = {J_epsilon}, dJ_dw ~= k = {k} ")
+
+
+# When J = w^2
+print("\n\nWhen J = w^2")
+J, w = symbols('J, w')
+J=w**2
+# this should be w**2
+print(f"J = {J}") 
+
+
+dJ_dw = diff(J,w)
+print(f"dJ_dw = {dJ_dw}")
+
+print(f"derivative at the point w = 2 : {dJ_dw.subs([(w,2)]) }")   # derivative at the point w = 2
+print(f"derivative at the point w = 3 : {dJ_dw.subs([(w,3)]) }")    # derivative at the point w = 3
+print(f"derivative at the point w = -3 : {dJ_dw.subs([(w,-3)]) }")    # derivative at the point w = -3
+
+
+# When J = 2*w
+print("\n\nWhen J = 2*w")
+J, w = symbols('J, w')
+J=2*w
+# this should be w**2
+print(f"J = {J}") 
+
+
+dJ_dw = diff(J,w)
+print(f"dJ_dw = {dJ_dw}")
+
+print(f"derivative at the point w = 2 : {dJ_dw.subs([(w,2)]) }")   # derivative at the point w = 2
+print(f"derivative at the point w = 3 : {dJ_dw.subs([(w,3)]) }")    # derivative at the point w = 3
+print(f"derivative at the point w = -3 : {dJ_dw.subs([(w,-3)]) }")    # derivative at the point w = -3
+
+#Now compare above with the regular arithmetic calculation
+J = 2*3
+J_epsilon = 2*(3 + 0.001)
+k = (J_epsilon - J)/0.001
+print(f"J = {J}, J_epsilon = {J_epsilon}, dJ_dw ~= k = {k} ")
+
+
+print("\n\nWhen J = w^3")
+J, w = symbols('J, w')
+J=w**3
+print(f"J = {J}") 
+
+
+dJ_dw = diff(J,w)
+print(f"dJ_dw = {dJ_dw}")
+
+print(f"derivative at the point w = 2 : {dJ_dw.subs([(w,2)]) }")   # derivative at the point w = 2
+print(f"derivative at the point w = 3 : {dJ_dw.subs([(w,3)]) }")    # derivative at the point w = 3
+print(f"derivative at the point w = -3 : {dJ_dw.subs([(w,-3)]) }")    # derivative at the point w = -3
+
+#Now compare above with the regular arithmetic calculation
+J = (2)**3
+J_epsilon = (2 + 0.001)**3
+k = (J_epsilon - J)/0.001
+print(f"J = {J}, J_epsilon = {J_epsilon}, dJ_dw ~= k = {k} ")
+
+
+# When J = 1/w
+print("\n\nWhen J = 1/w")
+J, w = symbols('J, w')
+J=1/w
+print(f"J = {J}") 
+
+
+dJ_dw = diff(J,w)
+print(f"dJ_dw = {dJ_dw}")
+
+print(f"derivative at the point w = 2 : {dJ_dw.subs([(w,2)]) }")   # derivative at the point w = 2
+print(f"derivative at the point w = 3 : {dJ_dw.subs([(w,3)]) }")    # derivative at the point w = 3
+print(f"derivative at the point w = -3 : {dJ_dw.subs([(w,-3)]) }")    # derivative at the point w = -3
+
+#Now compare above with the regular arithmetic calculation
+J = 1/2
+J_epsilon = 1/(2 + 0.001)
+k = (J_epsilon - J)/0.001
+print(f"J = {J}, J_epsilon = {J_epsilon}, dJ_dw ~= k = {k} ")
+
+
+
+# When J = 1/w**2
+print("\n\nWhen J = 1/w^2")
+J, w = symbols('J, w')
+J=1/(w**2)
+print(f"J = {J}") 
+
+
+dJ_dw = diff(J,w)
+print(f"dJ_dw = {dJ_dw}")
+
+print(f"derivative at the point w = 2 : {dJ_dw.subs([(w,2)]) }")   # derivative at the point w = 2
+print(f"derivative at the point w = 3 : {dJ_dw.subs([(w,3)]) }")    # derivative at the point w = 3
+print(f"derivative at the point w = -3 : {dJ_dw.subs([(w,-3)]) }")    # derivative at the point w = -3
+
+#Now compare above with the regular arithmetic calculation
+J = 1/(2**2)
+J_epsilon = 1/(2 + 0.001)**2
+k = (J_epsilon - J)/0.001
+print(f"J = {J}, J_epsilon = {J_epsilon}, dJ_dw ~= k = {k} ")
